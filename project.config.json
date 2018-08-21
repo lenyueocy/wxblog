@@ -1,11 +1,46 @@
 {
-	"miniprogramRoot": "./miniprogram",
-	"pluginRoot": "./plugin",
-	"compileType": "plugin",
+	"description": "项目配置文件。",
 	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
 		"newFeature": true
 	},
+	"compileType": "miniprogram",
+	"libVersion": "1.0.0",
 	"appid": "wx731935abae00567a",
 	"projectname": "wxblog",
-	"condition": {}
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": []
+		}
+	},
+	"lenyue":{
+		"注释":"这里是原始的一些无用数据",
+		"miniprogramRoot": "./miniprogram",
+		"pluginRoot": "./plugin",
+		"compileType": "plugin",
+		"setting": {
+			"newFeature": true
+		},
+		"appid": "wx731935abae00567a",
+		"projectname": "wxblog",
+		"condition": {}
+	}
 }
+
