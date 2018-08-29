@@ -1,5 +1,6 @@
 /* pages/detail/detail.wxss */
 @import "/wxParse/wxParse.wxss";
+@import "/zanui/index.wxss";
 
 .feed-item {
   padding: 30rpx 30rpx 20rpx;
@@ -55,4 +56,13 @@
 .detail-tab .item-body .iconimage {
   width: 20px;
   height: 20px;
+}
+.a-title-bottom{
+    margin:10px 0;
+}
+.a-title-bottom-text{
+    position:relative;
+    padding:0 10px 0 0;
+    color:#80848f;
+    font-size:12px;
 }

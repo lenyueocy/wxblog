@@ -1,42 +1,20 @@
-<!--index.wxml-->
-<!--<import src="/dist/loadmore/index.wxml" />-->
+<navigator url="../../pages/detail/detail?art_id={{item.art_id}}" hover-class="other-navigator-hover"
+           wx:for="{{articles}}">
+    <i-card title="{{item.art_title}}" thumb="{{api+item.art_img}}">
+        <!--<view slot="content">{{item.art_title}}</view>-->
+        <view slot="footer">
+            <i-icon type="browse_fill" style="margin:0 0 0 5rpx;" size="18" color="#80848f"></i-icon>
+            <text>{{item.art_hit}}</text>
 
-<!--<scroll-view scroll-y="true" class="container"  bindscrolltolower="lower" enable-back-to-top="true"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+            <i-icon type="mine_fill" style="margin:0 0 0 20rpx;" size="18" color="#80848f"></i-icon>
+            <text>{{item.art_author}}</text>
 
-  <block wx:for="{{posts}}" wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-    <view class="feed-item" id="{{item.id}}" bindtap="bindItemTap">
-      <view class="zan-font-16" >
-        <text>{{item.title}}</text>
-      </view>
-      <view style='margin-top:10px;text-align: center'>
-        <image mode="widthFix" style="width: 100%;"  data-index="{{idx}}" binderror="errorloadImage" src="{{item.slug}}"></image>
-      </view>
-      <view class="zan-font-12 zan-ellipsis--l3" bindtap="bindItemTap">
-        <text>{{item.custom_excerpt}}</text>
-      </view>
-      <view class="tag-body">
-        <view class="tag-actions" bindtap="bindItemTap">
-          <view class="like">
-            <view class="zan-icon zan-icon-contact zan-pull-left zan-font-12 "> </view>
-            <view class="zan-pull-left zan-font-12 ">
-              玄冰
-            </view>
-          </view>
-          <view class="comments">
-            <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
-            <view class="zan-pull-left zan-font-12">
-              <text>{{item.created_at}}</text>
-            </view>
-          </view>
+            <i-icon type="brush_fill" style="margin:0 0 0 20rpx;" size="18" color="#80848f"></i-icon>
+            <text>{{item.art_addtime}}</text>
         </view>
-      </view>
+    </i-card>
+    <view style="margin-bottom: 8px;">
     </view>
-  </block>
-  <template is="zan-loadmore" data="{{ loading }}" />
-  <template is="zan-loadmore" data="{{ nodata }}" />
-  <template is="zan-loadmore" data="{{ nomore }}" />
-</scroll-view>-->
+</navigator>
 
-<view class="body" bindtap="click" bindtouchmove="click" bindtouchend="click" bindtouchstart="click" style="background-color:{{colorr}}">
-    <text class="index">冷月博客正在建设中~</text>
-  </view>
+

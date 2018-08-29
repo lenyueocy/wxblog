@@ -7,7 +7,7 @@
   5. 【解决】详情页底部设计，评论怎么接（ghost目前没有支持评论）
  **/
 
-const Zan = require('../../dist/index');
+const Zan = require('../../zanui/index');
 const WxParse = require('../../wxParse/wxParse.js');
 const util = require('../../utils/util.js');
 const api = require('../../utils/api.js');
@@ -15,12 +15,11 @@ const app = getApp();
 var recentUrl = '';
 
 Page(Object.assign({}, Zan.Dialog, Zan.Toast, {
-
   /**
    * 页面的初始数据
    */
   data: {
-    post: {},
+    article: false,
     author: "",
     iconContact: "",
     iconColock: "",
@@ -33,34 +32,23 @@ Page(Object.assign({}, Zan.Dialog, Zan.Toast, {
    */
   onLoad: function(options) {
     let that = this;
-    let blogId = options.blogId;
-    app.checkUserInfo(function (userInfo, isLogin) {
+    let blogId = options.art_id;
+
+    /*app.checkUserInfo(function (userInfo, isLogin) {
       if (!isLogin) {
         wx.redirectTo({
           url: '../authorization/authorization?backType=' + blogId
         })
       }
-    })
+    })*/
     
-    that.setData({
+    /*that.setData({
       author: "玄冰",
       iconContact: "contact",
       iconColock: "colock"
-    })
+    })*/
     
     that.getData(blogId);
-    //收藏状态
-    var postsCollected = wx.getStorageSync('posts_Collected');
-    if (postsCollected) {
-      var isCollected = postsCollected[blogId] == undefined ? false : postsCollected[blogId];
-      that.setData({
-        collected: isCollected
-      })
-    } else {
-      var postsCollected = {}
-      postsCollected[blogId] = false;
-      wx.setStorageSync('posts_Collected', postsCollected);
-    }
 
   },
   onShareAppMessage: function() {
@@ -133,19 +121,15 @@ Page(Object.assign({}, Zan.Dialog, Zan.Toast, {
     let that = this;
     api.getBlogById({
       query: {
-        blogId: blogId
+        blogId: blogId,
+        urlCode: '/article/detail'
       },
       success: (res) => {
-        const post = res.data.posts[0];
-        var time = util.formatTime(post.created_at);
-        post.created_at = time;
-        recentUrl = getApp().globalData.imageUrl + post.slug + '.jpg?' + getApp().globalData.imageStyle200To200;
-        post.slug = getApp().globalData.imageUrl + post.slug + '.jpg?' + getApp().globalData.imageStyle600To300;
-
         this.setData({
-          post: post
+          article: res.data.data.list
         });
-        WxParse.wxParse('article', 'html', post.html, that, 5);
+        let html = res.data.data.list.art_content
+        WxParse.wxParse('articles', 'html',html, that, 5);
 
         //最近浏览
         var postsRecent = wx.getStorageSync('posts_Recent');
