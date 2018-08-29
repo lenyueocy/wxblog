@@ -1,26 +1,20 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/mine/mine",
     "pages/topic/topic",
-    "pages/detail/detail",
-    "pages/collected/collected",
-    "pages/about/about_wechat",
-    "pages/about/about_me",
-    "pages/authorization/authorization"
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#f9f9f9",
     "navigationBarTitleText": "冷月博客",
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "backgroundColor": "#f9f9f9"
   },
   "tabBar": {
     "color": "#959394",
     "selectedColor": "#959394",
-    "backgroundColor": "#f0f0f0",
+    "backgroundColor": "#fff",
     "borderStyle": "white",
     "list": [
       {
