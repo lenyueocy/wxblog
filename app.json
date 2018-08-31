@@ -9,7 +9,8 @@
     "navigationBarBackgroundColor": "#f9f9f9",
     "navigationBarTitleText": "冷月博客",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#f9f9f9"
+    "backgroundColor": "#f9f9f9",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#959394",
