@@ -75,6 +75,7 @@
                 </view>
             </view>
         </view>
+
         <view class="weui-panel">
             <view class="weui-panel__hd">文字列表附来源</view>
             <view class="weui-panel__bd">

@@ -39,6 +39,13 @@ const getBlogById = (params) => {
   wxRequest(params, apiUrl+apiVersion+params.query.urlCode+'?art_id='+params.query.blogId);
 };
 
+const getCategory = (params) => {
+  wxRequest(params, apiUrl+apiVersion+params.query.urlCode);
+};
+const getCategoryArticle = (params) => {
+  wxRequest(params, apiUrl+apiVersion+params.query.urlCode+'?id='+params.query.id);
+};
+
 const getBlogByTag = (params) => {
   wxRequest(params, `${apiUrl}/posts?page=${params.query.page}&limit=${params.query.limit}&client_id=${clientId}&client_secret=${clientSecret}&filter=${params.query.filter}`);
 };
@@ -47,5 +54,7 @@ module.exports = {
   getBlogList,
   getBlogById,
   getBlogByTag,
+  getCategory,
+    getCategoryArticle,
   apiUrl,
 };

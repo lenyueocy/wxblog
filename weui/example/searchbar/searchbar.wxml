@@ -3,7 +3,9 @@
         <view class="page__title">SearchBar</view>
         <view class="page__desc">搜索栏</view>
     </view>
+
     <view class="page__bd">
+
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
@@ -20,6 +22,7 @@
             </view>
             <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
+
         <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
             <navigator url="" class="weui-cell" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">
@@ -42,5 +45,6 @@
                 </view>
             </navigator>
         </view>
+
     </view>
 </view>

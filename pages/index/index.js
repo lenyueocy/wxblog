@@ -27,6 +27,7 @@ Page({
             icon: 'loading',
             duration: 3000
         });
+
         var that = this
         this.getData();
         /*wx.showModal({
@@ -116,9 +117,9 @@ Page({
                         articles: res.data.data.list
                     });
                     wx.showToast({
-                        title: '主人 好了~',
+                        title: '加载完毕~',
                         icon: 'success',
-                        duration: 2000
+                        duration: 500
                     });
                 }
 
@@ -136,5 +137,32 @@ Page({
 
             },
         });
+    },
+    /* 搜索栏 */
+    data: {
+        inputShowed: false,
+        inputVal: ""
+    },
+    showInput: function () {
+        this.setData({
+            inputShowed: true
+        });
+    },
+    hideInput: function () {
+        this.setData({
+            inputVal: "",
+            inputShowed: false
+        });
+    },
+    clearInput: function () {
+        this.setData({
+            inputVal: ""
+        });
+    },
+    inputTyping: function (e) {
+        this.setData({
+            inputVal: e.detail.value
+        });
     }
+
 })

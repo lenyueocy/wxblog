@@ -1,20 +1,86 @@
-<navigator url="../../pages/detail/detail?art_id={{item.art_id}}" hover-class="other-navigator-hover"
-           wx:for="{{articles}}">
-    <i-card title="{{item.art_title}}" thumb="{{api+item.art_img}}">
-        <!--<view slot="content">{{item.art_title}}</view>-->
-        <view slot="footer">
-            <i-icon type="browse_fill" style="margin:0 0 0 5rpx;" size="18" color="#80848f"></i-icon>
-            <text>{{item.art_hit}}</text>
+<view  wx:if="{{inputShowed}}" style="color:#fff;background-color: #000;opacity: 0.8;position: fixed;left: 0;top:0;z-index: 2;width: 100%;height: 100%;" >
+</view>
 
-            <i-icon type="mine_fill" style="margin:0 0 0 20rpx;" size="18" color="#80848f"></i-icon>
-            <text>{{item.art_author}}</text>
+<!-- 文章搜索栏 -->
+<view class="page__bd  {{inputShowed?'leny-fixed':' '}}" style="z-index:3;width:100%;">
 
-            <i-icon type="brush_fill" style="margin:0 0 0 20rpx;" size="18" color="#80848f"></i-icon>
-            <text>{{item.art_addtime}}</text>
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索</view>
+            </label>
         </view>
-    </i-card>
-    <view style="margin-bottom: 8px;">
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
     </view>
-</navigator>
+
+    <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">
+                <view>想搜索？</view>
+            </view>
+        </navigator>
+        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">
+                <view>请点我</view>
+            </view>
+        </navigator>
+        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">
+                <view>点完了？</view>
+            </view>
+        </navigator>
+        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">
+                <view>不给你搜索~</view>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+
+<!-- 文章列表 -->
+<view  wx:for="{{articles}}" wx:key="key" wx:item="item"><!--hover-class="other-navigator-hover"-->
+    <navigator url="../../pages/detail/detail?art_id={{item.art_id}}"  >
+
+        <view class="weui-panel">
+            <!-- <view class="weui-panel__hd">文字列表附来源</view> -->
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text leny-border" >{{item.art_title}}</view>
+
+                    <view class="weui-media-box__desc" style="-webkit-line-clamp:4;font-size: 14px;text-indent : 0px;letter-spacing:0.5px;">
+                        {{item.art_content}}
+                    </view>
+
+                    <view class="weui-media-box__info" style="color:#65c9f1;">
+                        <view class="weui-media-box__info__meta">
+                            <!-- <i-icon type="mine_fill" style="margin:0 0 0 20rpx;" size="18" color="#80848f"></i-icon> -->
+                            <text>{{item.art_author}}</text>
+                        </view>
+                        <view class="weui-media-box__info__meta">
+                            <!-- <i-icon type="browse_fill" style="margin:0 0 0 5rpx;" size="18" color="#80848f"></i-icon> -->
+                            <text>阅读量 {{item.art_hit}}</text>
+                        </view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                            <!-- <i-icon type="brush_fill" style="margin:0 0 0 20rpx;" size="18" color="#80848f"></i-icon> -->
+                            <text>{{item.art_addtime}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view style="margin-bottom: 10px;"></view>
+    </navigator>
+</view>
+
+
 
 

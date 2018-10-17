@@ -1,0 +1,10 @@
+@import 'weui/style/weui.wxss';
+.me-foot{
+    font-size: 30px;
+}
+.show{
+
+}
+.hide{
+    display: none;
+}

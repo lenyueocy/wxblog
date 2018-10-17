@@ -1,3 +1,17 @@
 {
-  "navigationBarTitleText": "专题"
+  "navigationBarTitleText": "分类",
+  "usingComponents": {
+    "i-tabs": "../../iview/tabs/index",
+    "i-tab": "../../iview/tab/index",
+    "i-panel": "../../iview/panel/index",
+    "i-card": "../../iview/card/index",
+    "i-icon": "../../iview/icon/index",
+    "i-grid": "../../iview/grid/index",
+    "i-grid-item": "../../iview/grid-item/index",
+    "i-panel": "../../iview/panel/index",
+    "i-cell-group": "../../iview/cell-group/index",
+    "i-cell": "../../iview/cell/index",
+    "i-sticky": "../../iview/sticky/index",
+    "i-sticky-item": "../../iview/sticky-item/index"
+  }
 }
