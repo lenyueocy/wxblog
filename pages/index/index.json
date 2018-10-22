@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "冷月博客",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "i-card": "../../iview/card/index",
     "i-icon": "../../iview/icon/index",

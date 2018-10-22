@@ -31,7 +31,7 @@ const wxRequest = (params, url) => {
 };
 
 const getBlogList = (params) => {
-  wxRequest(params, apiUrl+apiVersion+params.query.urlCode+'?page='+params.query.page);
+  wxRequest(params, apiUrl+apiVersion+params.query.urlCode+'?page='+params.query.page+'&notin='+params.query.notin+'&type='+params.query.type);
   // wxRequest(params, `${apiUrl}${apiVersion}${params.query.urlCode}?page=${params.query.page}`);
 };
 

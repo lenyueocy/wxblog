@@ -6,26 +6,30 @@
 const util = require('../../utils/util.js');
 const api = require('../../utils/api.js');
 const app = getApp();
-var page = 0;
 Page({
     data: {
         posts: [],
-        page: 0,
+        page: 1,
+        notin: [],
         loading: false,
+        sxtype: "",
         nodata: false,
         nomore: false,
         lowerComplete: true,
         colorr: "#ccc",
         defaultImageUrl: app.globalData.defaultImageUrl + app.globalData.imageStyle600To300,
         title: '冷月博客',
-        articles: false,
-        api: api.apiUrl
+        articles: [],
+        api: api.apiUrl,
+        /* 搜索栏变量 */
+        inputShowed: false,
+        inputVal: "",
     },
     onLoad: function () {
         wx.showToast({
             title: '小冷月加载中',
             icon: 'loading',
-            duration: 3000
+            duration: 500
         });
 
         var that = this
@@ -39,50 +43,20 @@ Page({
          },
          })*/
     },
-    change: function () {
-        var color = ['#ccc', '#fff', '#red', '#ffff66', '#66ff33', '#33ccff', '#ffff00', '#ccffff', '#ffdab9']
-        var key = Math.floor(Math.random() * 9)
-        this.setData({colorr: color[key]})
+    onReachBottom(){
+        this.data.page++
+        this.getData()
     },
-    click: function () {
-        var that = this
-        wx.showModal({
-            title: '呼~被你发现了',
-            showCancel: false,
-            content: '哇，被你发现了，你居然敢点我~这个秘密一般人是不知道的，你就不怕突然屏幕跳出一个女鬼？',
-            success: function () {
-                that.quit()
-            },
-        })
-    },
-    quit: function () {
-        wx.showModal({
-            title: '再见',
-            showCancel: false,
-            content: '再见了，小哥哥小姐姐们，这个博客还没建成，我不能让你们发现我的秘密，再见~',
-            success: function () {
-                wx.navigateBack({
-                    delta: -1
-                });
-            },
-        })
-    },
-    lower: function () {
-        let that = this;
-        if (!that.data.lowerComplete) {
-            return;
-        }
-        if (!that.data.nomore && !that.data.nodata) {
-            that.setData({
-                loading: true,
-                lowerComplete: false
-            });
-            that.getData();
-            that.setData({
-                lowerComplete: true
-            });
-        }
-        console.log("lower")
+    onPullDownRefresh(){
+        setTimeout(() => {
+            wx.stopPullDownRefresh();
+        }, 100);
+        /*wx.showLoading({
+         title: '刷新中...',
+         })*/
+        this.data.sxtype = "rand"
+        //开始获取随机数据
+        this.getData("sx");
     },
     //事件处理函数
     bindItemTap: function (e) {
@@ -102,24 +76,38 @@ Page({
             })
         }
     },
-    getData: function () {
+    getData: function (lx){
+      if(this.data.sxtype=='rand' && lx=="sx"){
+            this.setData({
+                articles: []
+            })
+          this.data.page = 1
+        }
         let that = this;
         let page = that.data.page;
+        let notins = that.data.notin;
         api.getBlogList({
             query: {
-                limit: 10,
-                page: page + 1,
+                limit: 6,
+                page: page,
+                notin: notins.join(","),
+                type: this.data.sxtype,
                 urlCode: '/article/lists'
             },
             success: (res) => {
                 if (res.statusCode == 200 && res.data.code == 0) {
-                    that.setData({
-                        articles: res.data.data.list
+                    var arts =this.data.articles.concat(res.data.data.list)
+                    var notin = this.data.notin
+                    for (var i in arts){
+                        notin.push(arts[i]['art_id'])
+                    }
+                    var qcnotin = notin.filter(function(element,index,self){
+                        return self.indexOf(element) === index;
                     });
-                    wx.showToast({
-                        title: '加载完毕~',
-                        icon: 'success',
-                        duration: 500
+
+                    that.setData({
+                        articles: arts,
+                        notin: qcnotin
                     });
                 }
 
@@ -137,12 +125,9 @@ Page({
 
             },
         });
+
     },
     /* 搜索栏 */
-    data: {
-        inputShowed: false,
-        inputVal: ""
-    },
     showInput: function () {
         this.setData({
             inputShowed: true
