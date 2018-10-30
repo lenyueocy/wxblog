@@ -51,12 +51,14 @@ Page({
         setTimeout(() => {
             wx.stopPullDownRefresh();
         }, 100);
-        /*wx.showLoading({
-         title: '刷新中...',
-         })*/
         this.data.sxtype = "rand"
+        this.setData({
+            articles: []
+        })
+        this.data.page = 1
+        this.data.notin = []
         //开始获取随机数据
-        this.getData("sx");
+        this.getData();
     },
     //事件处理函数
     bindItemTap: function (e) {
@@ -76,13 +78,7 @@ Page({
             })
         }
     },
-    getData: function (lx){
-      if(this.data.sxtype=='rand' && lx=="sx"){
-            this.setData({
-                articles: []
-            })
-          this.data.page = 1
-        }
+    getData: function (){
         let that = this;
         let page = that.data.page;
         let notins = that.data.notin;

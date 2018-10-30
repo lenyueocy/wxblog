@@ -5,7 +5,7 @@
 
     <i-sticky scrollTop="{{scrollTop}}">
 
-        <view slot="title">
+        <view slot="title" >
             <i-tabs current="{{ current_scroll }}" scroll bindchange="handleChangeScroll">
                 <block wx:for="{{categorys}}"  wx:key="key" wx:item="item">
                     <i-tab key="{{item.menu_id}}" title="{{item.menu_name}}"></i-tab>

@@ -71,7 +71,6 @@ Page(extend({}, Tab, {
          });*/
         this.getCategory();
     },
-
     handleChangeScroll ({detail}) {
         this.setData({
             current_scroll: detail.key
